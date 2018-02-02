@@ -1,0 +1,28 @@
+---
+- name: Run a hub container.
+  docker_container:
+    name: "{{ docker_selenium_hub_name }}"
+    image: "{{ docker_selenium_hub_image }}:{{ docker_selenium_tag }}"
+    pull: "{{ docker_selenium_pull_image }}"
+    state: "{{ docker_selenium_state }}"
+    ports: "{{ docker_selenium_hub_port }}"
+
+- name: Run firefox nodes with {{ docker_selenium_firefox_node_image }}:{{ docker_selenium_tag }}
+  docker_container:
+    image: "{{ docker_selenium_firefox_node_image }}:{{ docker_selenium_tag }}"
+    name: "{{ item }}"
+    pull: "{{ docker_selenium_pull_image }}"
+    state: "{{ docker_selenium_state }}"
+    published_ports: all
+    links: "{{ docker_selenium_hub_link }}"
+  with_sequence: count={{ docker_selenium_firefox_node_count }} format=selenium-firefox%03d
+
+- name: Run chrome nodes with {{ docker_selenium_chrome_node_image }}:{{ docker_selenium_tag }}
+  docker_container:
+    image: "{{ docker_selenium_chrome_node_image }}:{{ docker_selenium_tag }}"
+    name: "{{ item }}"
+    pull: "{{ docker_selenium_pull_image }}"
+    state: "{{ docker_selenium_state }}"
+    published_ports: all
+    links: "{{ docker_selenium_hub_link }}"
+  with_sequence: count={{ docker_selenium_chrome_node_count }} format=selenium-chrome%03d

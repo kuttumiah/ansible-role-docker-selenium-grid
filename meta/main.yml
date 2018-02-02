@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: Md Robaiatul Islam
+  description: Run Selenium Grid Server (Hub and Nodes) with Docker images
+  company: NerdCats
+  issue_tracker_url: https://github.com/kuttumiah/ansible-role-docker-selenium-grid/issues
+  license: GPLv2
+  min_ansible_version: 2.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - artful
+  galaxy_tags:
+    - containers
+    - docker
+    - selenium
+    - grid
+    - orchestration
+    - system
+    - hub
+    - nodes
+    - testing
+
+dependencies: []
