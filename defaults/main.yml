@@ -1,5 +1,5 @@
 ---
-docker_selenium_tag: 3.8.1
+docker_selenium_tag: latest
 docker_selenium_pull_image: false
 docker_selenium_state: started
 
@@ -9,21 +9,7 @@ docker_selenium_hub_image: selenium/hub
 docker_selenium_hub_link: "{{ docker_selenium_hub_name }}:hub"
 
 docker_selenium_firefox_node_image: selenium/node-firefox
-docker_selenium_firefox_node_count: 2
+docker_selenium_firefox_node_count: 1
 
 docker_selenium_chrome_node_image: selenium/node-chrome
-docker_selenium_chrome_node_count: 2
-
-#docker_selenium_hub:
-#  - name: selenium-hub
-#    image: selenium/hub
-#    port: 4444:4444
-#    link: "{{ docker_selenium_hub_name }}:hub"
-
-#docker_selenium_nodes:
-#  - image: selenium/node-firefox
-#    count: 2
-#    published_ports: all
-#  - image: selenium/node-chrome
-#    count: 2
-#    published_ports: all
+docker_selenium_chrome_node_count: 1
