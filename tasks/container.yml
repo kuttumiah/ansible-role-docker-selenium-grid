@@ -1,0 +1,10 @@
+---
+- name: Run {{ docker_selenium_node.name }} nodes with {{ docker_selenium_node.image }}:{{ docker_selenium_tag }} image
+  docker_container:
+    image: "{{ docker_selenium_node.image }}:{{ docker_selenium_tag }}"
+    name: "{{ item }}"
+    pull: "{{ docker_selenium_pull_image }}"
+    state: "{{ docker_selenium_state }}"
+    published_ports: all
+    links: "{{ docker_selenium_hub_link }}"
+  with_sequence: count={{ docker_selenium_node.count }} format={{ docker_selenium_node.name }}%03d
